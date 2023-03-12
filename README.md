@@ -1,7 +1,4 @@
 # Los robots en todos lados
- 
-[![Build Status](https://travis-ci.org/wollok/clasesBots.svg?branch=master)](https://travis-ci.org/wollok/clasesBots)
-
 
 ## Objetos y Clases
 
