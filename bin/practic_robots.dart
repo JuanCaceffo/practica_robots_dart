@@ -1,5 +1,5 @@
-import 'package:practic_robots/practic_robots.dart' as practic_robots;
+import 'package:practic_robots/twitter.dart';
 
-void main(List<String> arguments) {
-  print('Hello world: ${practic_robots.calculate()}!');
+void main() {
+  Pdpwitter Twitter = Pdpwitter();
 }
