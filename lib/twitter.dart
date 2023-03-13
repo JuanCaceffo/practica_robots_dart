@@ -24,6 +24,9 @@ class Pdpwitter{
     cantNotSurpassFiveteenWords(message);
     tweet.addAnswer(Tweet(userName,message));
   }
+  List<Tweet> getListTweetsHomeUser(String user) => allTweets!.where((tweet) => tweet.messageContains("@$user")).toList();
+  List<Tweet> getListTweetsToNothing() => allTweets!.where((tweet) => tweet.messageContains(RegExp(r'\B@\w+'))).toList();
+
   //validations
   void cantNotSurpassFiveteenWords(String message){
     if(message.split(' ').length > 15){
