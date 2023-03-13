@@ -1,9 +1,24 @@
-class Pdpwitter{
-  List<Tweet>? allTwitts = <Tweet>[];
+import 'package:practic_robots/bots.dart';
 
+final botBenito1 = Benito(['nashe',"falopa",'droga',"dea"]);
+final BotAdvertising1 = BotAdvertising("https://www.linkedin.com/in/juan-caceffo/", "linkedin", "hola unete a mi comunidad de linkdin.");
+final botData = DataBot();
+
+class Pdpwitter{
+  List<Tweet>? allTweets = <Tweet>[];
+  List botList = [botBenito1,BotAdvertising1,botData];
+
+  List<Tweet> get getAllTweets => allTweets!;
+  
   void publicateATweet(String message,String userName){
     cantNotSurpassFiveteenWords(message);
-    allTwitts!.add(Tweet(userName,message));
+    allTweets!.add(Tweet(userName,message));
+    botsTakeAction();
+  }
+  void botsTakeAction(){
+    for (var bot in botList){
+      bot.takeAccions(allTweets!.last);
+    }
   }
   void replyTweet(Tweet tweet,String message,String userName){
     cantNotSurpassFiveteenWords(message);
@@ -21,7 +36,7 @@ var twitter = Pdpwitter();
 class Tweet{
   String? userName;
   String? message;
-  List<Tweet>? answers;
+  List<Tweet>? answers = <Tweet>[];
 
   Tweet(this.userName,this.message);
 

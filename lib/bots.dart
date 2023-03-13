@@ -15,31 +15,39 @@ class Benito{
   List<String>? blackListWords;
   String? userName = "botBenito";
 
-  Benito(this.blackListWords);
+  Benito(this.blackListWords,{this.userName});
   
   bool analyzeTweet(Tweet tweet) => blackListWords!.any((word) => tweet.messageContains(word));
-  void reportUser(Tweet tweet){
+  void takeAccions(Tweet tweet){
     if (analyzeTweet(tweet)){
       police.registerSuspect(tweet.getUserName, tweet.getMessage);
     }
   }
 }
-class BotPublisher{
+class BotAdvertising{
   String? wordMatch;
   String? messageAdvertising;
   String? linkAdvertising;
-  String? userName = "botPublisher";
+  String? userName = "BotAdvertising";
 
-  BotPublisher(this.linkAdvertising,this.wordMatch,this.messageAdvertising);
+  BotAdvertising(this.linkAdvertising,this.wordMatch,this.messageAdvertising,{this.userName});
 
   bool analyzeTweet(Tweet tweet) => tweet.messageContains(wordMatch);
 
-  void replyUserTweet(Tweet tweet){
-    final personalizedMessageAdvertising = "@${tweet.getUserName} : ${messageAdvertising!}";
+  void takeAccions(Tweet tweet){
+    final personalizedMessageAdvertising = "@${tweet.getUserName} : ${messageAdvertising!} link: ${linkAdvertising}";
     
     if (analyzeTweet(tweet)){
-      twitter.replyTweet(tweet, personalizedMessageAdvertising, userName!);
+      twitter.replyTweet(tweet, personalizedMessageAdvertising, userName ?? "BotAdvertisingVarNull");
     }
   }  
+}
+class DataBot{
+  List<Tweet>? usersTweets = <Tweet>[];
 
+  List<Tweet> get getUsersTweets => usersTweets!;
+
+  void takeAccions(Tweet tweet){
+    usersTweets!.add(tweet);
+  }
 }
